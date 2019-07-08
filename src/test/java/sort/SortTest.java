@@ -7,8 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 public class SortTest {
 
-  private static final int[] intArray1 = {10, 2, 10, 3, 1, 2, 5};
-
   @Test
   public void bubbleSort() {
     final int[] intArray1 = SortUtils.createIntArray1();
