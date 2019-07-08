@@ -1,8 +1,8 @@
 package sort;
 
-class BubbleSort {
+class BubbleSort implements HasIntArraySort {
 
-  void sort(int[] array) {
+  public void sortArray(int[] array) {
     boolean needIteration = true;
     while (needIteration) {
       needIteration = false;
