@@ -1,6 +1,6 @@
 package sort;
 
-class BubbleSort implements HasIntArraySort {
+class BubbleSort extends HasIntArraySort {
 
   @Override
   public void sortArray(int[] array) {

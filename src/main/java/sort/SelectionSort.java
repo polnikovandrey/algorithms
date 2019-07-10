@@ -1,6 +1,6 @@
 package sort;
 
-class SelectionSort implements HasIntArraySort {
+class SelectionSort extends HasIntArraySort {
 
   @Override
   public void sortArray(int[] array) {
