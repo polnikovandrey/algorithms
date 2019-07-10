@@ -2,6 +2,7 @@ package sort;
 
 class SelectionSort implements HasIntArraySort {
 
+  @Override
   public void sortArray(int[] array) {
     for (int i = 0; i < array.length; i++) {
       int minIdx = i;
@@ -10,7 +11,7 @@ class SelectionSort implements HasIntArraySort {
           minIdx = j;
         }
       }
-      SortUtils.swapArrayElements(array, i, minIdx);
+      swapArrayElements(array, i, minIdx);
     }
   }
 }
