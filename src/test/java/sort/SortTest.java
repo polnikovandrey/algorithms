@@ -24,6 +24,14 @@ public class SortTest {
   }
 
   @Test
+  public void CocktailSort() {
+    final int[] intArray = createIntArray();
+    assertFalse(isSortedIntArray(intArray));
+    new CocktailSort().sortArray(intArray);
+    assertTrue(isSortedIntArray(intArray));
+  }
+
+  @Test
   public void selectionSort() {
     final int[] intArray = createIntArray();
     assertFalse(isSortedIntArray(intArray));
@@ -41,6 +49,6 @@ public class SortTest {
   }
 
   private static int[] createIntArray() {
-    return new int[] {10, 2, 10, 3, 1, 2, 5};
+    return new int[] {10, 2, 10, 3, 1, 2, 5, 4, 13, 20, 1, 0, 78, 65, 5, 0};
   }
 }
