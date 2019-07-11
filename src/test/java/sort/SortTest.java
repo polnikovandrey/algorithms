@@ -57,7 +57,7 @@ public class SortTest {
 
   @Test
   public void quickSort() {
-    // TODO
+    repeatSortExecution(new QuickSort());
   }
 
   private void repeatSortExecution(HasIntArraySort sort) {
