@@ -36,6 +36,11 @@ public class SortTest {
   }
 
   @Test
+  public void insertionSort() {
+    repeatSortExecution(new InsertionSort());
+  }
+
+  @Test
   public void selectionSort() {
     repeatSortExecution(new SelectionSort());
   }
