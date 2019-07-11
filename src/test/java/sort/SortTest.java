@@ -62,10 +62,7 @@ public class SortTest {
 
   private void repeatSortExecution(HasIntArraySort sort) {
     IntStream.rangeClosed(0, 2).forEach(value -> {
-      int[] intArray = createIntArray();
-      while (isSortedIntArray(intArray)) {
-        intArray = createIntArray();
-      }
+      final int[] intArray = createIntArray();
       sort.sortArray(intArray);
       assertTrue(sort.getClass().getSimpleName() + ": error: " + Arrays.toString(intArray), isSortedIntArray(intArray));
     });
