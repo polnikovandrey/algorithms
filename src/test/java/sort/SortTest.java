@@ -2,10 +2,10 @@ package sort;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SortTest {
@@ -37,10 +37,12 @@ public class SortTest {
 
   private void repeatSortExecution(HasIntArraySort sort) {
     IntStream.rangeClosed(0, 2).forEach(value -> {
-      final int[] intArray = createIntArray();
-      assertFalse(isSortedIntArray(intArray));
+      int[] intArray = createIntArray();
+      while (isSortedIntArray(intArray)) {
+        intArray = createIntArray();
+      }
       sort.sortArray(intArray);
-      assertTrue(isSortedIntArray(intArray));
+      assertTrue(sort.getClass().getSimpleName() + ": error: " + Arrays.toString(intArray), isSortedIntArray(intArray));
     });
   }
 
@@ -55,9 +57,9 @@ public class SortTest {
 
   private int[] createIntArray() {
     final Random random = new Random();
-    final int[] array = new int[random.nextInt(50)];
+    final int[] array = new int[random.nextInt(100)];
     for (int i = 0; i < array.length; i++) {
-      array[i] = random.nextInt();
+      array[i] = random.nextInt(100);
     }
     return array;
   }
