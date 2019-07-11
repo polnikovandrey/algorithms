@@ -1,6 +1,6 @@
 package sort;
 
-public class CocktailSort extends HasIntArraySort {
+class CocktailSort extends HasIntArraySort {
 
   @Override
   public void sortArray(int[] array) {

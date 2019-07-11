@@ -1,6 +1,6 @@
 package sort;
 
-public class StupidSort extends HasIntArraySort {
+class StupidSort extends HasIntArraySort {
 
   @Override
   public void sortArray(int[] array) {

@@ -41,6 +41,16 @@ public class SortTest {
   }
 
   @Test
+  public void shellSort() {
+    repeatSortExecution(new ShellSort());
+  }
+
+  @Test
+  public void mergeSort() {
+    // TODO
+  }
+
+  @Test
   public void selectionSort() {
     repeatSortExecution(new SelectionSort());
   }

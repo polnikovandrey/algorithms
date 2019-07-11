@@ -1,6 +1,6 @@
 package sort;
 
-public class InsertionSort extends HasIntArraySort {
+class InsertionSort extends HasIntArraySort {
 
   @Override
   void sortArray(int[] array) {
