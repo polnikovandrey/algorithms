@@ -46,13 +46,18 @@ public class SortTest {
   }
 
   @Test
-  public void mergeSort() {
-    // TODO
+  public void selectionSort() {
+    repeatSortExecution(new SelectionSort());
   }
 
   @Test
-  public void selectionSort() {
-    repeatSortExecution(new SelectionSort());
+  public void mergeSort() {
+    repeatSortExecution(new MergeSort());
+  }
+
+  @Test
+  public void quickSort() {
+    // TODO
   }
 
   private void repeatSortExecution(HasIntArraySort sort) {
