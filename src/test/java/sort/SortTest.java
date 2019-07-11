@@ -31,6 +31,11 @@ public class SortTest {
   }
 
   @Test
+  public void gnomeSort() {
+    repeatSortExecution(new GnomeSort());
+  }
+
+  @Test
   public void selectionSort() {
     repeatSortExecution(new SelectionSort());
   }
