@@ -79,9 +79,9 @@ public class SortTest {
 
   private int[] createIntArray() {
     final Random random = new Random();
-    final int[] array = new int[random.nextInt(100)];
+    final int[] array = new int[5 + random.nextInt(5)];
     for (int i = 0; i < array.length; i++) {
-      array[i] = random.nextInt(100);
+      array[i] = random.nextInt(10);
     }
     return array;
   }
