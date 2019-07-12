@@ -1,5 +1,19 @@
 package sort;
 
+/**
+ * Быстрая сортировка
+ * http://algolab.valemak.com/quick
+ * Класс                  Сортировки обменами
+ * Устойчивость           Нет
+ * Сравнения              Да
+ * Сложность по времени
+ *    Лучшая              O(n)
+ *    Средняя             O(n log n)
+ *    Худшая              O(n2)
+ * Сложность по дополнительной памяти
+ *    Нативная            O(n)
+ *    Седжвик             O(log n)
+ */
 class QuickSort extends HasIntArraySort {
 
   @Override

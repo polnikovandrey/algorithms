@@ -1,5 +1,19 @@
 package sort;
 
+/**
+ * Сортировка слиянием
+ * http://algolab.valemak.com/merge-simple
+ * Класс                  Сортировки слиянием
+ * Устойчивость           Да
+ * Сравнения              Да
+ * Сложность по времени
+ *    Худшая              O(n log n)
+ *    Средняя             O(n log n)
+ *    Лучшая              O(n log n)
+ * Сложность по памяти
+ *    Общая               O(n)
+ *    Дополнительная      O(n)
+ */
 class MergeSort extends HasIntArraySort {
 
   @Override

@@ -1,5 +1,19 @@
 package sort;
 
+/**
+ * Коктейльная сортировка
+ * http://algolab.valemak.com/cocktail
+ * Класс                    Сортировки обменами
+ * Устойчивость             Устойчивая
+ * Сравнения                Да
+ * Сложность по времени
+ *    Худшая               O(n2)
+ *    Средняя              O(n2)
+ *    Лучшая               O(n)
+ * Сложность по памяти
+ *    Общая                O(n)
+ *    Дополнительная       O(1)
+ */
 class CocktailSort extends HasIntArraySort {
 
   @Override

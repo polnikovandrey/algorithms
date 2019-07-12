@@ -1,5 +1,19 @@
 package sort;
 
+/**
+ * Четно-нечетная сортировка
+ * http://algolab.valemak.com/odd-even
+ * Класс                    Сортировки обменами
+ * Устойчивость             Устойчивая
+ * Сравнения                Да
+ * Сложность по времени
+ *    Худшая                O(n2)
+ *    Средняя               O(n2)
+ *    Лучшая                O(n)
+ * Сложность по памяти
+ *    Общая                 O(n)
+ *    Дополнительная        O(1)
+ */
 class OddEvenSorting extends HasIntArraySort {
 
   @Override

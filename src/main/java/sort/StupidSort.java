@@ -1,5 +1,19 @@
 package sort;
 
+/**
+ * Глупая сортировка
+ * http://algolab.valemak.com/stupid
+ * Класс                    Сортировки обменами
+ * Устойчивость             Устойчивая
+ * Сравнения                Да
+ * Сложность по времени
+ *    Худшая                O(n3)
+ *    Средняя               O(n3)
+ *    Лучшая                O(n3)
+ * Сложность по памяти
+ *    Общая                 O(n)
+ *    Дополнительная        O(1)
+ */
 class StupidSort extends HasIntArraySort {
 
   @Override

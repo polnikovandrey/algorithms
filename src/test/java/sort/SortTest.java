@@ -36,6 +36,11 @@ public class SortTest {
   }
 
   @Test
+  public void quickSort() {
+    repeatSortExecution(new QuickSort());
+  }
+
+  @Test
   public void insertionSort() {
     repeatSortExecution(new InsertionSort());
   }
@@ -53,11 +58,6 @@ public class SortTest {
   @Test
   public void mergeSort() {
     repeatSortExecution(new MergeSort());
-  }
-
-  @Test
-  public void quickSort() {
-    repeatSortExecution(new QuickSort());
   }
 
   private void repeatSortExecution(HasIntArraySort sort) {
