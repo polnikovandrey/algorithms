@@ -19,9 +19,17 @@ class InsertionSort extends HasIntArraySort {
 
   @Override
   void sortArray(int[] array) {
-    for (int i = 1; i < array.length; i++) {
-      for (int j = i; j > 0 && array[j] < array[j - 1]; j--) {
-        swapArrayElements(array, j, j - 1);
+    insertionSort(array, 0, 1);
+  }
+
+  void insertionSort(int[] array, int startIdx, int increment) {
+    for (int i = startIdx; i < array.length - 1; i = i + increment) {
+      for (int j = Math.min(i + increment, array.length - 1); j - increment >= 0; j = j - increment) {
+        if (array[j - increment] > array[j]) {
+          swapArrayElements(array, j, j - increment);
+        } else {
+          break;
+        }
       }
     }
   }
