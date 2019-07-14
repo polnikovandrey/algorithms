@@ -33,7 +33,10 @@ https://tproger.ru/digest/sorting-algorithms-visualized/
 https://www.geeksforgeeks.org/searching-algorithms/
 
 ##Структуры данных
-https://www.geeksforgeeks.org/data-structures/		
+https://www.geeksforgeeks.org/data-structures/
+https://proglib.io/p/8-data-structures/
+https://floppyy.ru/2016/05/02/graphs_in_practice/
+http://brestprog.by/topics/graphs/		
 
 ##Разное
 #####Алгоритмы и структуры данных JDK

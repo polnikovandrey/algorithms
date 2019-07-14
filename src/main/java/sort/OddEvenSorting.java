@@ -22,17 +22,23 @@ class OddEvenSorting extends HasIntArraySort {
     while (needIteration) {
       needIteration = false;
       for (int i = 0; i < array.length - 1; i += 2) {
-        if (array[i] > array[i + 1]) {
-          swapArrayElements(array, i, i + 1);
+        if (compareAndSwapElements(array, i)) {
           needIteration = true;
         }
       }
       for (int i = 1; i < array.length - 1; i += 2) {
-        if (array[i] > array[i + 1]) {
-          swapArrayElements(array, i, i + 1);
+        if (compareAndSwapElements(array, i)) {
           needIteration = true;
         }
       }
     }
+  }
+
+  private boolean compareAndSwapElements(int[] array, int i) {
+    if (array[i] > array[i + 1]) {
+      swapArrayElements(array, i, i + 1);
+      return true;
+    }
+    return false;
   }
 }
