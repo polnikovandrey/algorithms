@@ -16,7 +16,7 @@ package sort;
  *    Общая                 O(n)
  *    Дополнительная        O(1)
  */
-class SelectionSort extends HasIntArraySort {
+class SelectionSort extends IntArraySort {
 
   @Override
   public void sortArray(int[] array) {

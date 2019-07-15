@@ -1,6 +1,6 @@
 package sort;
 
-abstract class HasIntArraySort {
+abstract class IntArraySort {
 
   abstract void sortArray(int[] array);
 

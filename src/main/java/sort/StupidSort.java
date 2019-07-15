@@ -14,7 +14,7 @@ package sort;
  *    Общая                 O(n)
  *    Дополнительная        O(1)
  */
-class StupidSort extends HasIntArraySort {
+class StupidSort extends IntArraySort {
 
   @Override
   public void sortArray(int[] array) {

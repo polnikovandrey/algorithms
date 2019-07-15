@@ -15,7 +15,7 @@ package sort;
  *    Общая                O(n)
  *    Дополнительная       O(1)
  */
-class CocktailSort extends HasIntArraySort {
+class CocktailSort extends IntArraySort {
 
   @Override
   public void sortArray(int[] array) {

@@ -37,7 +37,7 @@ package sort;
  *    Нативная            O(n)
  *    Седжвик             O(log n)
  */
-class QuickSort extends HasIntArraySort {
+class QuickSort extends IntArraySort {
 
   @Override
   void sortArray(int[] array) {

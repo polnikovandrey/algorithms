@@ -16,7 +16,7 @@ package sort;
  *    Общая               O(n)
  *    Дополнительная      O(n)
  */
-class MergeSort extends HasIntArraySort {
+class MergeSort extends IntArraySort {
 
   @Override
   void sortArray(int[] array) {

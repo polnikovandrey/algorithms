@@ -18,7 +18,7 @@ package sort;
  *    Общая               O(n)
  *    Дополнительная      O(1)
  */
-class BubbleSort extends HasIntArraySort {
+class BubbleSort extends IntArraySort {
 
   @Override
   public void sortArray(int[] array) {

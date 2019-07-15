@@ -18,7 +18,7 @@ package sort;
  *    Общая                O(n)
  *    Дополнительная       O(1)
  */
-class GnomeSort extends HasIntArraySort {
+class GnomeSort extends IntArraySort {
 
   @Override
   void sortArray(int[] array) {

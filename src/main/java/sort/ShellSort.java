@@ -25,7 +25,7 @@ package sort;
  *    Общая                 O(n)
  *    Дополнительная        O(1)
  */
-class ShellSort extends HasIntArraySort {
+class ShellSort extends IntArraySort {
 
   private final InsertionSort insertionSort = new InsertionSort();
 
