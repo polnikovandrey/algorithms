@@ -51,4 +51,19 @@ public class StructuresTest implements IntArrayTest {
     //noinspection SpellCheckingInspection
     assertEquals(reversed, "!dlrow ,olleH");
   }
+
+  @Test
+  public void reverseStringWithStack1() {
+    final String toReverse = "Hello, world!";
+    final Stack stack = new Stack(toReverse.length());
+    for (int i = 0; i < toReverse.length(); i++) {
+      stack.push(toReverse.charAt(i));
+    }
+    StringBuilder reversed = new StringBuilder();
+    while (!stack.isEmpty()) {
+      reversed.append((char) stack.pop());
+    }
+    //noinspection SpellCheckingInspection
+    assertEquals(reversed.toString(), "!dlrow ,olleH");
+  }
 }
