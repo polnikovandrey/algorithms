@@ -37,10 +37,10 @@ package sort;
  *    Нативная            O(n)
  *    Седжвик             O(log n)
  */
-class QuickSort extends IntArraySort {
+public class QuickSort extends IntArraySort {
 
   @Override
-  void sortArray(int[] array) {
+  public void sortArray(int[] array) {
     sortSubArray(array, 0, array.length - 1);
   }
 

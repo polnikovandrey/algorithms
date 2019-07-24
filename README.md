@@ -1,6 +1,8 @@
 #Java algorithms
 
 ##Теория
+#####Вопросы по алгоритмам с собеседований
+https://proglib.io/p/algorithm-questions/
 #####50 вопросов и ответов по программированию для подготовки к техническому интервью
 https://dev.by/news/50-chasto-zadavaemykh-voprosov-po-programmirovaniyu-dlya-podgotovki-k-tekhnicheskomu-sobesedovaniyu
 #####Как быстро подготовиться к вопросам по алгоритмам на IT-собеседовании — отвечают эксперты
@@ -32,6 +34,9 @@ https://tproger.ru/translations/sorting-for-beginners/
 https://tproger.ru/digest/sorting-algorithms-visualized/
 
 ##Поиск
+#####6 алгоритмов поиска на Java: от простого к сложному
+https://proglib.io/p/6-search-algorithms-java/
+#####Searching Algorithms
 https://www.geeksforgeeks.org/searching-algorithms/
 
 ##Структуры данных
