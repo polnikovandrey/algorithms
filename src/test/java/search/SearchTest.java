@@ -1,9 +1,6 @@
-package sort;
+package search;
 
-import search.BinaryIterativeSearch;
-import search.BinaryRecursiveSearch;
-import search.IntArraySearch;
-import search.LinearSearch;
+import sort.IntArrayTest;
 
 import org.junit.Test;
 
