@@ -5,6 +5,7 @@ import sort.IntArrayTest;
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -65,5 +66,23 @@ public class StructuresTest implements IntArrayTest {
     }
     //noinspection SpellCheckingInspection
     assertEquals(reversed.toString(), "!dlrow ,olleH");
+  }
+
+  @Test
+  public void queueTest() {
+    final Random random = new Random();
+    final int queueSize = 10;
+    final Queue queue = new Queue(queueSize);
+    assertTrue(queue.isEmpty());
+    assertFalse(queue.isFull());
+    IntStream.range(0, 10).forEach(i -> {
+      queue.enqueue(random.nextInt());
+      assertFalse(queue.isEmpty());
+    });
+    assertTrue(queue.isFull());
+    IntStream.range(0, 10).forEach(i -> queue.dequeue());
+    assertFalse(queue.isFull());
+    assertTrue(queue.isEmpty());
+
   }
 }
