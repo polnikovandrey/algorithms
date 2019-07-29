@@ -1,9 +1,16 @@
 package structures.linkedList;
 
-public class SinglyLinkedList {
+@SuppressWarnings("unused")
+public class SinglyLinkedList implements LinkedList {
 
   private Node first;
 
+  @Override
+  public Node getFirst() {
+    return first;
+  }
+
+  @Override
   public void insertFirst(Node node) {
     if (node == null) {
       throw new IllegalArgumentException("Node is null!");
@@ -16,6 +23,7 @@ public class SinglyLinkedList {
     }
   }
 
+  @Override
   public void insertLast(Node node) {
     if (first != null) {
       Node lastNode = first;
@@ -26,6 +34,7 @@ public class SinglyLinkedList {
     }
   }
 
+  @Override
   public void insertAfterNode(Node after, Node node) {
     Node current = first;
     while (current != null) {
@@ -39,6 +48,7 @@ public class SinglyLinkedList {
     }
   }
 
+  @Override
   public Node removeFirst() {
     final Node tmp = first;
     if (first != null) {
@@ -47,6 +57,7 @@ public class SinglyLinkedList {
     return tmp;
   }
 
+  @Override
   public Node removeLast() {
     Node result = null;
     if (first == null) {
@@ -68,6 +79,7 @@ public class SinglyLinkedList {
     return result;
   }
 
+  @Override
   public Node removeAfterNode(Node node) {
     Node result = node == null ? null : node.getNext();
     if (result != null) {
@@ -76,6 +88,7 @@ public class SinglyLinkedList {
     return result;
   }
 
+  @Override
   public Node removeBeforeNode(Node node) {
     Node result = null;
     if (node == null || first == null || first.equals(node)) {
@@ -100,50 +113,4 @@ public class SinglyLinkedList {
     }
     return result;
   }
-
-  public int getSize() {
-    int count = 0;
-    if (first != null) {
-      count++;
-      Node node = first;
-      while (node.getNext() != null) {
-        count++;
-        node = node.getNext();
-      }
-    }
-    return count;
-  }
-
-  public boolean isEmpty() {
-    return first == null;
-  }
-
-  @SuppressWarnings("WeakerAccess")
-  public static class Node {
-
-    private int value;
-    private Node next;
-
-    public Node(int value) {
-      this.value = value;
-    }
-
-    public int getValue() {
-      return value;
-    }
-
-    public void setValue(int value) {
-      this.value = value;
-    }
-
-    public Node getNext() {
-      return next;
-    }
-
-    public void setNext(Node next) {
-      this.next = next;
-    }
-  }
-
-
 }

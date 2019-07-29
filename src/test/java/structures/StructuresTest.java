@@ -1,6 +1,9 @@
 package structures;
 
 import sort.IntArrayTest;
+import structures.linkedList.CircularLinkedList;
+import structures.linkedList.LinkedList;
+import structures.linkedList.Node;
 import structures.linkedList.SinglyLinkedList;
 
 import org.junit.Test;
@@ -88,12 +91,28 @@ public class StructuresTest implements IntArrayTest {
   }
 
   @Test
-  public void linkedListTestSize() {
+  public void singlyLinkedListTestSize() {
     final int nodesCount = 10;
     final Random random = new Random();
-    final SinglyLinkedList list = new SinglyLinkedList();
+    final LinkedList list = new SinglyLinkedList();
     IntStream.range(0, nodesCount).forEach(i -> {
-      final SinglyLinkedList.Node node = new SinglyLinkedList.Node(random.nextInt());
+      final Node node = new Node(random.nextInt());
+      list.insertFirst(node);
+    });
+    assertEquals(list.getSize(), nodesCount);
+    while(list.removeFirst() != null) {
+      // do nothing
+    }
+    assertTrue(list.isEmpty());
+  }
+
+  @Test
+  public void CircularLinkedListTestSize() {
+    final int nodesCount = 10;
+    final Random random = new Random();
+    final LinkedList list = new CircularLinkedList();
+    IntStream.range(0, nodesCount).forEach(i -> {
+      final Node node = new Node(random.nextInt());
       list.insertFirst(node);
     });
     assertEquals(list.getSize(), nodesCount);
