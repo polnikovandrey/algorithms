@@ -3,7 +3,6 @@ package structures;
 import sort.IntArrayTest;
 import structures.linkedList.CircularLinkedList;
 import structures.linkedList.LinkedList;
-import structures.linkedList.Node;
 import structures.linkedList.SinglyLinkedList;
 
 import org.junit.Test;
@@ -95,29 +94,23 @@ public class StructuresTest implements IntArrayTest {
     final int nodesCount = 10;
     final Random random = new Random();
     final LinkedList list = new SinglyLinkedList();
-    IntStream.range(0, nodesCount).forEach(i -> {
-      final Node node = new Node(random.nextInt());
-      list.insertFirst(node);
-    });
+    IntStream.range(0, nodesCount).forEach(i -> list.insertFirst(random.nextInt()));
     assertEquals(list.getSize(), nodesCount);
-    while(list.removeFirst() != null) {
-      // do nothing
+    while (!list.isEmpty()) {
+      list.removeFirst();
     }
     assertTrue(list.isEmpty());
   }
 
   @Test
-  public void CircularLinkedListTestSize() {
+  public void circularLinkedListTestSize() {
     final int nodesCount = 10;
     final Random random = new Random();
     final LinkedList list = new CircularLinkedList();
-    IntStream.range(0, nodesCount).forEach(i -> {
-      final Node node = new Node(random.nextInt());
-      list.insertFirst(node);
-    });
+    IntStream.range(0, nodesCount).forEach(i -> list.insertFirst(random.nextInt()));
     assertEquals(list.getSize(), nodesCount);
-    while(list.removeFirst() != null) {
-      // do nothing
+    while (!list.isEmpty()) {
+      list.removeFirst();
     }
     assertTrue(list.isEmpty());
   }

@@ -1,20 +1,33 @@
 package structures.linkedList;
 
 @SuppressWarnings("unused")
-public class SinglyLinkedList implements LinkedList {
-
-  private Node first;
+public class SinglyLinkedList extends AbstractLinkedList {
 
   @Override
-  public Node getFirst() {
-    return first;
+  public int getSize() {
+    int count = 0;
+    if (first != null) {
+      count++;
+      Node node = first;
+      while (node.getNext() != null) {
+        count++;
+        node = node.getNext();
+      }
+    }
+    return count;
   }
 
   @Override
-  public void insertFirst(Node node) {
-    if (node == null) {
-      throw new IllegalArgumentException("Node is null!");
+  public int getFirst() {
+    if (first == null) {
+      throw new IllegalStateException("List is empty!");
     }
+    return first.getValue();
+  }
+
+  @Override
+  public void insertFirst(int value) {
+    final Node node = new Node(value);
     if (first == null) {
       first = node;
     } else {
@@ -24,8 +37,11 @@ public class SinglyLinkedList implements LinkedList {
   }
 
   @Override
-  public void insertLast(Node node) {
-    if (first != null) {
+  public void insertLast(int value) {
+    final Node node = new Node(value);
+    if (first == null) {
+      first = node;
+    } else {
       Node lastNode = first;
       while (lastNode.getNext() != null) {
         lastNode = lastNode.getNext();
@@ -35,33 +51,26 @@ public class SinglyLinkedList implements LinkedList {
   }
 
   @Override
-  public void insertAfterNode(Node after, Node node) {
-    Node current = first;
-    while (current != null) {
-      if (current.equals(after)) {
-        node.setNext(current.getNext());
-        current.setNext(node);
-        break;
-      } else {
-        current = current.getNext();
-      }
-    }
+  public void insertAfterNode(Node after, int value) {
+    final Node node = new Node(value);
+    node.setNext(after.getNext());
+    after.setNext(node);
   }
 
   @Override
-  public Node removeFirst() {
+  public int removeFirst() {
     final Node tmp = first;
     if (first != null) {
       first = first.getNext();
     }
-    return tmp;
+    return tmp.getValue();
   }
 
   @Override
-  public Node removeLast() {
+  public int removeLast() {
     Node result = null;
     if (first == null) {
-      // do nothing, return null
+      throw new IllegalStateException("List is empty!");
     } else if (first.getNext() == null) {
       result = first;
       first = null;
@@ -76,24 +85,39 @@ public class SinglyLinkedList implements LinkedList {
         }
       }
     }
-    return result;
-  }
-
-  @Override
-  public Node removeAfterNode(Node node) {
-    Node result = node == null ? null : node.getNext();
-    if (result != null) {
-      node.setNext(result.getNext());
+    if (result == null) {
+      // Unexpected state, method should not enter here
+      throw new IllegalStateException("Last not found!");
     }
-    return result;
+    return result.getValue();
   }
 
   @Override
-  public Node removeBeforeNode(Node node) {
+  public int removeAfterNode(Node node) {
+    if (node == null) {
+      throw new IllegalArgumentException("Node is null!");
+    }
+    if (node.getNext() == null) {
+      throw new IllegalArgumentException("Node is last!");
+    }
+    final Node result = node.getNext();
+    node.setNext(result.getNext());
+    return result.getValue();
+  }
+
+  @Override
+  public int removeBeforeNode(Node node) {
     Node result = null;
-    if (node == null || first == null || first.equals(node)) {
-      // do nothing, return null;
-    } else if (node.equals(first.getNext())) {
+    if (node == null) {
+      throw new IllegalArgumentException("Node is null!");
+    }
+    if (first == null) {
+      throw new IllegalStateException("List is empty!");
+    }
+    if (first.equals(node)) {
+      throw new IllegalArgumentException("Node is first!");
+    }
+    if (node.equals(first.getNext())) {
       result = first;
       first = first.getNext();
     } else {
@@ -111,6 +135,10 @@ public class SinglyLinkedList implements LinkedList {
         }
       }
     }
-    return result;
+    if (result == null) {
+      // Unexpected state, method should not enter here
+      throw new IllegalStateException("Before node not found!");
+    }
+    return result.getValue();
   }
 }

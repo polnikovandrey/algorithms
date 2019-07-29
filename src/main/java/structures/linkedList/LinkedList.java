@@ -1,39 +1,25 @@
 package structures.linkedList;
 
-@SuppressWarnings("unused")
+@SuppressWarnings( {"unused", "UnusedReturnValue"})
 public interface LinkedList {
 
-  Node getFirst();
+  boolean isEmpty();
 
-  void insertFirst(Node node);
+  int getSize();
 
-  void insertLast(Node node);
+  int getFirst();
 
-  void insertAfterNode(Node after, Node node);
+  void insertFirst(int value);
 
-  Node removeFirst();
+  void insertLast(int value);
 
-  Node removeLast();
+  void insertAfterNode(Node after, int value);
 
-  Node removeAfterNode(Node node);
+  int removeFirst();
 
-  Node removeBeforeNode(Node node);
+  int removeLast();
 
-  default int getSize() {
-    int count = 0;
-    final Node first = getFirst();
-    if (first != null) {
-      count++;
-      Node node = first;
-      while (node.getNext() != null) {
-        count++;
-        node = node.getNext();
-      }
-    }
-    return count;
-  }
+  int removeAfterNode(Node node);
 
-  default boolean isEmpty() {
-    return getFirst() == null;
-  }
+  int removeBeforeNode(Node node);
 }
