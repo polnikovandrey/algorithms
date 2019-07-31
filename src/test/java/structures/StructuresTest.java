@@ -114,4 +114,9 @@ public class StructuresTest implements IntArrayTest {
     }
     assertTrue(list.isEmpty());
   }
+
+  @Test
+  public void doubleLinkedListTest() {
+    // TODO test DoubleLinkedList
+  }
 }
