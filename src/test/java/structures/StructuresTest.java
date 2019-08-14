@@ -1,12 +1,16 @@
 package structures;
 
 import sort.IntArrayTest;
+import structures.binarySearchTree.BinarySearchTree;
 import structures.linkedList.CircularLinkedList;
 import structures.linkedList.LinkedList;
 import structures.linkedList.SinglyLinkedList;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -118,5 +122,40 @@ public class StructuresTest implements IntArrayTest {
   @Test
   public void doubleLinkedListTest() {
     // TODO test DoubleLinkedList
+  }
+
+  @Test
+  public void binarySearchTreeTest() {
+    final int repeats = 100;
+    final int size = 100;
+    IntStream.range(0, repeats).forEach(i -> {
+      final Integer[] temp = new Integer[size];
+      final BinarySearchTree tree = new BinarySearchTree();
+      final Random random = new Random();
+      int min = Integer.MAX_VALUE;
+      int max = Integer.MIN_VALUE;
+      for (int j : IntStream.range(0, size).toArray()) {
+        final int value = random.nextInt(100);
+        temp[j] = value;
+        tree.insert(value);
+        if (value > max) {
+          max = value;
+        }
+        if (value < min) {
+          min = value;
+        }
+      }
+      final int foundMin = tree.getMin(null).getValue();
+      final int foundMax = tree.getMax(null).getValue();
+      assertEquals(min, foundMin);
+      assertEquals(max, foundMax);
+      final List<Integer> values = Arrays.asList(temp);
+      Collections.shuffle(values);
+      for (int value : values) {
+        tree.delete(value);
+        assertTrue(tree.isBinarySearchTree());
+      }
+      assertTrue(tree.isEmpty());
+    });
   }
 }
