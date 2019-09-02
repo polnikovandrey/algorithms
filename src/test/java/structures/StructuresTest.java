@@ -2,6 +2,7 @@ package structures;
 
 import sort.IntArrayTest;
 import structures.binarySearchTree.BinarySearchTree;
+import structures.heap.Heap;
 import structures.linkedList.CircularLinkedList;
 import structures.linkedList.LinkedList;
 import structures.linkedList.SinglyLinkedList;
@@ -156,6 +157,27 @@ public class StructuresTest implements IntArrayTest {
         assertTrue(tree.isBinarySearchTree());
       }
       assertTrue(tree.isEmpty());
+    });
+  }
+
+  @Test
+  public void heapTest() {
+    final int repeats = 100;
+    final int size = 100;
+    final Random random = new Random();
+    IntStream.range(0, repeats).forEach(i -> {
+      final Heap heap = new Heap(size);
+      final int currentSize = random.nextInt(100);
+      IntStream.range(0, currentSize).forEach(j -> {
+        heap.insert(random.nextInt(100));
+        assertTrue(heap.isValidHeap());
+        assertFalse(heap.isEmpty());
+      });
+      while (!heap.isEmpty()) {
+        heap.remove();
+        assertTrue(heap.isValidHeap());
+      }
+      assertTrue(heap.isEmpty());
     });
   }
 }
