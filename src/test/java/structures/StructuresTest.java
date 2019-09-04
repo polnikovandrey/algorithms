@@ -2,6 +2,7 @@ package structures;
 
 import sort.IntArrayTest;
 import structures.binarySearchTree.BinarySearchTree;
+import structures.hashtable.HashTable;
 import structures.heap.Heap;
 import structures.linkedList.CircularLinkedList;
 import structures.linkedList.LinkedList;
@@ -9,6 +10,7 @@ import structures.linkedList.SinglyLinkedList;
 
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -178,6 +180,24 @@ public class StructuresTest implements IntArrayTest {
         assertTrue(heap.isValidHeap());
       }
       assertTrue(heap.isEmpty());
+    });
+  }
+
+  @Test
+  public void hashTableTest() {
+    final int repeats = 100;
+    final int size = 100;
+    final Random random = new Random();
+    IntStream.range(0, repeats).forEach(i -> {
+      final HashTable hashTable = new HashTable(size);
+      final int currentSize = random.nextInt(100);
+      IntStream.range(0, currentSize).forEach(j -> {
+        final byte[] array = new byte[10]; // length is bounded by 7
+        random.nextBytes(array);
+        final String randomString = new String(array, StandardCharsets.UTF_8);
+        hashTable.insert(randomString);
+        assertEquals(randomString, hashTable.find(randomString));
+      });
     });
   }
 }
