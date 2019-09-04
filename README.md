@@ -46,6 +46,8 @@ https://floppyy.ru/2016/05/02/graphs_in_practice/
 http://brestprog.by/topics/graphs/		
 
 ##Разное
+##### Problem Solving with Algorithms and Data Structures (На русском. Очень доступно, но про Python)
+http://aliev.me/runestone/index.html https://github.com/aliev/runestone
 #####Алгоритмы и структуры данных JDK
 https://habr.com/ru/post/182776/
 #####Структуры данных и алгоритмы Java (2е Издание) Роберт Лафоре
