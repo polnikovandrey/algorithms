@@ -240,9 +240,17 @@ public class StructuresTest implements IntArrayTest {
       IntStream.range(0, size).forEach(j -> {
         final String randomString = generateRandomString(random);
         graph.addVertex(randomString);
-        if (j > 1 && random.nextBoolean()) {
-          final int destinationIndex = random.nextInt(j - 1);
-          graph.addEdge(randomString, graph.nameForIndex(destinationIndex));
+      });
+      IntStream.range(0, size).forEach(j -> {
+        int randomIdx = random.nextInt(size);
+        while (randomIdx == j) {
+          randomIdx = random.nextInt(size);
+        }
+        final String randomVertexName = graph.nameForIndex(randomIdx);
+        graph.addEdge(graph.nameForIndex(j),  randomVertexName);
+        if (random.nextBoolean()) {
+          final int destinationIndex = random.nextInt(size);
+          graph.addEdge(graph.nameForIndex(j), graph.nameForIndex(destinationIndex));
         }
       });
       final String name = graph.nameForIndex(random.nextInt(size));

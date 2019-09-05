@@ -5,13 +5,10 @@ import java.util.StringJoiner;
 @SuppressWarnings("WeakerAccess")
 public class Vertex {
 
-  private final BreadthFirstSearchData breadthFirstSearchData;
-
   private final String name;
   private Node adjacent;
 
   public Vertex(String name, Node adjacent) {
-    this.breadthFirstSearchData = new BreadthFirstSearchData();
     this.name = name;
     this.adjacent = adjacent;
   }
@@ -26,10 +23,6 @@ public class Vertex {
 
   public void setAdjacent(Node adjacent) {
     this.adjacent = adjacent;
-  }
-
-  public BreadthFirstSearchData getBreadthFirstSearchData() {
-    return breadthFirstSearchData;
   }
 
   @Override

@@ -1,6 +1,8 @@
 package structures.graph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -91,26 +93,26 @@ public class Graph {
    * Поиск в ширину.
    */
   public Vertex breadthFirstSearch(String name) {
+    final List<Vertex> processed = new ArrayList<>();
     final Queue<Vertex> queue = new LinkedList<>();
     for (Vertex vertex : vertices) {
-      if (!vertex.getBreadthFirstSearchData().isEnqueued()) {
-        vertex.getBreadthFirstSearchData().setEnqueued(true);
+      if (!processed.contains(vertex)) {
         queue.offer(vertex);
+        processed.add(vertex);
         while (!queue.isEmpty()) {
-          final Vertex current = queue.remove();
-          if (current.getName().equals(name)) {
-            return current;
+          final Vertex innerCurrent = queue.remove();
+          if (innerCurrent.getName().equals(name)) {
+            return innerCurrent;
           }
-          Node adjacent = current.getAdjacent();
+          Node adjacent = innerCurrent.getAdjacent();
           while (adjacent != null) {
             final Vertex adjVertex = vertices[adjacent.getVertexIdx()];
-            final BreadthFirstSearchData adjBreadthFirstSearchData = adjVertex.getBreadthFirstSearchData();
-            if (!adjBreadthFirstSearchData.isEnqueued()) {
+            if (!processed.contains(adjVertex)) {
               if (adjVertex.getName().equals(name)) {
                 return adjVertex;
               }
-              adjBreadthFirstSearchData.setEnqueued(true);
               queue.offer(adjVertex);
+              processed.add(adjVertex);
             }
             adjacent = adjacent.getNext();
           }
