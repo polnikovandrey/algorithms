@@ -1,5 +1,7 @@
 package structures.graph;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -83,5 +85,38 @@ public class Graph {
 
   public boolean isDirectional() {
     return directional;
+  }
+
+  /**
+   * Поиск в ширину.
+   */
+  public Vertex breadthFirstSearch(String name) {
+    final Queue<Vertex> queue = new LinkedList<>();
+    for (Vertex vertex : vertices) {
+      if (!vertex.getBreadthFirstSearchData().isEnqueued()) {
+        vertex.getBreadthFirstSearchData().setEnqueued(true);
+        queue.offer(vertex);
+        while (!queue.isEmpty()) {
+          final Vertex current = queue.remove();
+          if (current.getName().equals(name)) {
+            return current;
+          }
+          Node adjacent = current.getAdjacent();
+          while (adjacent != null) {
+            final Vertex adjVertex = vertices[adjacent.getVertexIdx()];
+            final BreadthFirstSearchData adjBreadthFirstSearchData = adjVertex.getBreadthFirstSearchData();
+            if (!adjBreadthFirstSearchData.isEnqueued()) {
+              if (adjVertex.getName().equals(name)) {
+                return adjVertex;
+              }
+              adjBreadthFirstSearchData.setEnqueued(true);
+              queue.offer(adjVertex);
+            }
+            adjacent = adjacent.getNext();
+          }
+        }
+      }
+    }
+    return null;
   }
 }

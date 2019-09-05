@@ -230,6 +230,26 @@ public class StructuresTest implements IntArrayTest {
     Logger.getLogger(StructuresTest.class.getSimpleName()).info(sb.toString());
   }
 
+  @Test
+  public void breadthFirstSearchGraphTest() {
+    final int repeats = 100;
+    final int size = 40;
+    final Random random = new Random();
+    IntStream.rangeClosed(0, repeats).forEach(i -> {
+      final Graph graph = new Graph(size, random.nextBoolean());
+      IntStream.range(0, size).forEach(j -> {
+        final String randomString = generateRandomString(random);
+        graph.addVertex(randomString);
+        if (j > 1 && random.nextBoolean()) {
+          final int destinationIndex = random.nextInt(j - 1);
+          graph.addEdge(randomString, graph.nameForIndex(destinationIndex));
+        }
+      });
+      final String name = graph.nameForIndex(random.nextInt(size));
+      assertEquals(graph.breadthFirstSearch(name).getName(), name);
+    });
+  }
+
   private String generateRandomString(Random random) {
     return IntStream.rangeClosed(0, random.nextInt(10))
             .mapToObj(i -> String.valueOf(SYMBOLS.charAt(random.nextInt(SYMBOLS.length() - 1))))
