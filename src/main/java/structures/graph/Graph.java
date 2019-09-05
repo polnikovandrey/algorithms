@@ -1,16 +1,17 @@
 package structures.graph;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Graph {
 
   private final Vertex[] vertices;
+  private final boolean directional;
   private int indexCounter;
 
-  public Graph(int size) {
+  public Graph(int size, boolean directional) {
     this.vertices = new Vertex[size];
+    this.directional = directional;
   }
 
   public void addVertex(String vertexName) {
@@ -22,7 +23,9 @@ public class Graph {
     final int firstVertexIdx = indexForName(firstVertexName);
     final int secondVertexIdx = indexForName(secondVertexName);
     doAppendEdge(firstVertexIdx, secondVertexIdx);
-    // doAppendEdge(secondVertexIdx, firstVertexIdx);
+    if (!directional) {
+      doAppendEdge(secondVertexIdx, firstVertexIdx);
+    }
   }
 
   private void doAppendEdge(int firstVertexIdx, int secondVertexIdx) {
@@ -49,20 +52,25 @@ public class Graph {
   }
 
   public String print() {
-    return Arrays.stream(vertices).map(vertex -> {
-      String result = vertex.getName();
-      Node node = vertex.getAdjacent();
-      while(node != null) {
-        final Vertex adjacent = vertices[node.getVertexIdx()];
-        result += " -> ";
-        result += node.getVertexIdx();
-        result += "::";
-        result += adjacent.getName();
-        node = adjacent.getAdjacent();
-      }
-      result += System.lineSeparator();
-      return result;
-    }).collect(Collectors.joining());
+    return IntStream.range(0, vertices.length)
+            .mapToObj(i -> {
+              final Vertex vertex = vertices[i];
+              final StringBuilder sb = new StringBuilder(Integer.toString(i));
+              sb.append("::");
+              sb.append(vertex.getName());
+              Node node = vertex.getAdjacent();
+              while(node != null) {
+                final Vertex adjacent = vertices[node.getVertexIdx()];
+                sb.append(" -> ");
+                sb.append(node.getVertexIdx());
+                sb.append("::");
+                sb.append(adjacent.getName());
+                node = node.getNext();
+              }
+              sb.append(System.lineSeparator());
+              return sb.toString();
+            })
+            .collect(Collectors.joining());
   }
 
   public String nameForIndex(int index) {
@@ -71,5 +79,9 @@ public class Graph {
 
   private int indexForName(String vertexName) {
     return IntStream.range(0, vertices.length).filter(i -> vertices[i].getName().equals(vertexName)).findFirst().orElse(-1);
+  }
+
+  public boolean isDirectional() {
+    return directional;
   }
 }

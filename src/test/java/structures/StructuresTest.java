@@ -210,7 +210,7 @@ public class StructuresTest implements IntArrayTest {
     final Random random = new Random();
     final StringBuilder sb = new StringBuilder();
     IntStream.rangeClosed(0, repeats).forEach(i -> {
-      final Graph graph = new Graph(size);
+      final Graph graph = new Graph(size, random.nextBoolean());
       IntStream.range(0, size).forEach(j -> {
         final String randomString = generateRandomString(random);
         graph.addVertex(randomString);
@@ -219,6 +219,11 @@ public class StructuresTest implements IntArrayTest {
           graph.addEdge(randomString, graph.nameForIndex(destinationIndex));
         }
       });
+      sb.append(System.lineSeparator());
+      sb.append("directional=");
+      sb.append(graph.isDirectional());
+      sb.append(System.lineSeparator());
+      sb.append("---------------------");
       sb.append(System.lineSeparator());
       sb.append(graph.print());
     });
