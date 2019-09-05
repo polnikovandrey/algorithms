@@ -2,6 +2,7 @@ package structures;
 
 import sort.IntArrayTest;
 import structures.binarySearchTree.BinarySearchTree;
+import structures.graph.Graph;
 import structures.hashtable.HashTable;
 import structures.heap.Heap;
 import structures.linkedList.CircularLinkedList;
@@ -10,11 +11,12 @@ import structures.linkedList.SinglyLinkedList;
 
 import org.junit.Test;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
@@ -22,6 +24,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class StructuresTest implements IntArrayTest {
+
+  private static String SYMBOLS = "abcdefghijklmnopqrstuvwxyz0123456789";
 
   @Test
   public void stackTest() {
@@ -192,12 +196,38 @@ public class StructuresTest implements IntArrayTest {
       final HashTable hashTable = new HashTable(size);
       final int currentSize = random.nextInt(100);
       IntStream.range(0, currentSize).forEach(j -> {
-        final byte[] array = new byte[10]; // length is bounded by 7
-        random.nextBytes(array);
-        final String randomString = new String(array, StandardCharsets.UTF_8);
+        final String randomString = generateRandomString(random);
         hashTable.insert(randomString);
         assertEquals(randomString, hashTable.find(randomString));
       });
     });
+  }
+
+  @Test
+  public void graphTest() {
+    final int repeats = 100;
+    final int size = 40;
+    final Random random = new Random();
+    final StringBuilder sb = new StringBuilder();
+    IntStream.rangeClosed(0, repeats).forEach(i -> {
+      final Graph graph = new Graph(size);
+      IntStream.range(0, size).forEach(j -> {
+        final String randomString = generateRandomString(random);
+        graph.addVertex(randomString);
+        if (j > 1 && random.nextBoolean()) {
+          final int destinationIndex = random.nextInt(j - 1);
+          graph.addEdge(randomString, graph.nameForIndex(destinationIndex));
+        }
+      });
+      sb.append(System.lineSeparator());
+      sb.append(graph.print());
+    });
+    Logger.getLogger(StructuresTest.class.getSimpleName()).info(sb.toString());
+  }
+
+  private String generateRandomString(Random random) {
+    return IntStream.rangeClosed(0, random.nextInt(10))
+            .mapToObj(i -> String.valueOf(SYMBOLS.charAt(random.nextInt(SYMBOLS.length() - 1))))
+            .collect(Collectors.joining());
   }
 }
