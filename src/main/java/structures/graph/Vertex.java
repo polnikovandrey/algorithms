@@ -5,12 +5,12 @@ import java.util.StringJoiner;
 @SuppressWarnings("WeakerAccess")
 public class Vertex {
 
-  private final String name;
-
   /**
    * Смежная нода
    */
   private Node adjacent;
+
+  private final String name;
 
   public Vertex(String name, Node adjacent) {
     this.name = name;

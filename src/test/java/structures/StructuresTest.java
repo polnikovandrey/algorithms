@@ -231,7 +231,7 @@ public class StructuresTest implements IntArrayTest {
   }
 
   @Test
-  public void breadthFirstSearchGraphTest() {
+  public void searchGraphTest() {
     final int repeats = 100;
     final int size = 100;
     final Random random = new Random();
@@ -255,6 +255,7 @@ public class StructuresTest implements IntArrayTest {
       });
       final String name = graph.nameForIndex(random.nextInt(size));
       assertEquals(graph.breadthFirstSearch(name).getName(), name);
+      assertEquals(graph.depthFirstSearch(name).getName(), name);
     });
   }
 

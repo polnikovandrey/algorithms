@@ -2,6 +2,7 @@ package structures.graph;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -89,28 +90,33 @@ public class Graph {
 
   /**
    * Поиск в ширину.
-   * @link bfs https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+   * @link bfs iterative https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
    */
   public Vertex breadthFirstSearch(String name) {
+    final StringBuilder sb = new StringBuilder();
     final boolean[] visited = new boolean[vertices.length];
     final Queue<Integer> queue = new LinkedList<>();
     for (int i = 0; i < vertices.length; i++) {
       if (!visited[i]) {
         queue.offer(i);
         visited[i] = true;
+        Node adjacent = vertices[i].getAdjacent();
+        while (adjacent != null) {
+          if (!visited[adjacent.getVertexIdx()]) {
+            queue.offer(adjacent.getVertexIdx());
+            visited[adjacent.getVertexIdx()] = true;
+          }
+          adjacent = adjacent.getNext();
+        }
         while(!queue.isEmpty()) {
-          final Vertex current = vertices[queue.poll()];
+          final Integer idx = queue.poll();
+          sb.append(idx);
+          final Vertex current = vertices[idx];
           if (current.getName().equals(name)) {
+            System.out.println(sb.toString());
             return current;
           }
-          Node adjacent = current.getAdjacent();
-          while (adjacent != null) {
-            if (!visited[adjacent.getVertexIdx()]) {
-              queue.offer(adjacent.getVertexIdx());
-              visited[adjacent.getVertexIdx()] = true;
-            }
-            adjacent = adjacent.getNext();
-          }
+          sb.append(" ");
         }
       }
     }
@@ -119,8 +125,34 @@ public class Graph {
 
   /**
    * Поиск в глубину.
+   * @link dfs iterative https://www.geeksforgeeks.org/iterative-depth-first-traversal/
    */
-  public Vertex depthFirstSearch(String name) {   // TODO !!!
+  public Vertex depthFirstSearch(String name) {
+    final StringBuilder sb = new StringBuilder();
+    final boolean[] visited = new boolean[vertices.length];
+    final Stack<Integer> stack = new Stack<>();
+    for (int i = 0; i < vertices.length; i++) {
+      if (!visited[i]) {
+        stack.push(i);
+        while (!stack.isEmpty()) {
+          final int idx = stack.pop();
+          if (!visited[idx]) {
+            sb.append(idx);
+            if (vertices[idx].getName().equals(name)) {
+              System.out.println(sb.toString());
+              return vertices[idx];
+            }
+            sb.append(" ");
+            visited[idx] = true;
+            Node adjacent = vertices[idx].getAdjacent();
+            while (adjacent != null) {
+              stack.push(adjacent.getVertexIdx());
+              adjacent = adjacent.getNext();
+            }
+          }
+        }
+      }
+    }
     return null;
   }
 }
