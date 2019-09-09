@@ -6,6 +6,10 @@ import java.util.StringJoiner;
 public class Vertex {
 
   private final String name;
+
+  /**
+   * Смежная нода
+   */
   private Node adjacent;
 
   public Vertex(String name, Node adjacent) {

@@ -206,7 +206,7 @@ public class StructuresTest implements IntArrayTest {
   @Test
   public void graphTest() {
     final int repeats = 100;
-    final int size = 40;
+    final int size = 100;
     final Random random = new Random();
     final StringBuilder sb = new StringBuilder();
     IntStream.rangeClosed(0, repeats).forEach(i -> {
@@ -233,7 +233,7 @@ public class StructuresTest implements IntArrayTest {
   @Test
   public void breadthFirstSearchGraphTest() {
     final int repeats = 100;
-    final int size = 40;
+    final int size = 100;
     final Random random = new Random();
     IntStream.rangeClosed(0, repeats).forEach(i -> {
       final Graph graph = new Graph(size, random.nextBoolean());

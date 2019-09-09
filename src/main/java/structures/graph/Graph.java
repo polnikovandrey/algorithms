@@ -1,8 +1,6 @@
 package structures.graph;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -91,34 +89,38 @@ public class Graph {
 
   /**
    * Поиск в ширину.
+   * @link bfs https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
    */
   public Vertex breadthFirstSearch(String name) {
-    final List<Vertex> processed = new ArrayList<>();
-    final Queue<Vertex> queue = new LinkedList<>();
-    for (Vertex vertex : vertices) {
-      if (!processed.contains(vertex)) {
-        queue.offer(vertex);
-        processed.add(vertex);
-        while (!queue.isEmpty()) {
-          final Vertex innerCurrent = queue.remove();
-          if (innerCurrent.getName().equals(name)) {
-            return innerCurrent;
+    final boolean[] visited = new boolean[vertices.length];
+    final Queue<Integer> queue = new LinkedList<>();
+    for (int i = 0; i < vertices.length; i++) {
+      if (!visited[i]) {
+        queue.offer(i);
+        visited[i] = true;
+        while(!queue.isEmpty()) {
+          final Vertex current = vertices[queue.poll()];
+          if (current.getName().equals(name)) {
+            return current;
           }
-          Node adjacent = innerCurrent.getAdjacent();
+          Node adjacent = current.getAdjacent();
           while (adjacent != null) {
-            final Vertex adjVertex = vertices[adjacent.getVertexIdx()];
-            if (!processed.contains(adjVertex)) {
-              if (adjVertex.getName().equals(name)) {
-                return adjVertex;
-              }
-              queue.offer(adjVertex);
-              processed.add(adjVertex);
+            if (!visited[adjacent.getVertexIdx()]) {
+              queue.offer(adjacent.getVertexIdx());
+              visited[adjacent.getVertexIdx()] = true;
             }
             adjacent = adjacent.getNext();
           }
         }
       }
     }
+    return null;
+  }
+
+  /**
+   * Поиск в глубину.
+   */
+  public Vertex depthFirstSearch(String name) {   // TODO !!!
     return null;
   }
 }
